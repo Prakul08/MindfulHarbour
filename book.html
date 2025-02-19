@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Book Library</title>
+    <link rel="stylesheet" href="nav.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="book.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <img src="Logo.png" alt="Logo" height="119" width="217">
+    
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="Activities.html">ACTIVITIES</a>
+            <a href="About Us.html">ABOUT US</a>
+            <a href="Contact Us.html">CONTACT US</a>
+    
+            <div class="dropdown">
+                <i class="bi bi-list menu-icon"></i>
+                <div class="dropdown-content">
+                    <a href="Pomodoro.html">Pomodoro Timer</a>
+                    <a href="Yoga.html">Surya Namskar</a>
+                    <a href="https://www.youtube.com/watch?v=inpok4MKVLM" target="_blank" onclick="window.open(this.href, 'popup', 'width=800,height=450'); 
+                    return false;">Medition Video</a>
+                    <a href="book.html">Book Library</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br><br>
+    
+    <h1 style="text-align: center;">Your Book Library</h1>
+    <button class="toggle-btn" onclick="toggleMode()">🌗 Dark Mode</button>
+    <p style="text-align: center;"> Click on a book to start reading.</p>
+
+    <div class="book-list">
+        <div class="book" onclick="showBook('https://icrrd.com/public/media/14-05-2021-102937The-Midnight%20-Library-Matt%20Haig.pdf')">
+            <img src="ML.jpg" alt="Book 1">
+            <div class="book-title">The Midnight Library <br> ~ Matt Haig</div>
+        </div>
+        <div class="book" onclick="showBook('https://ia601903.us.archive.org/25/items/TheSecretGarden_201303/The%20Secret%20Garden.pdf')">
+            <img src="SG.png" alt="Book 2">
+            <div class="book-title">The Secret Garden <br> ~ Frances Hodgson Burnett</div>
+        </div>
+        <div class="book" onclick="showBook('https://silentscreamsandskinnydreams.weebly.com/uploads/5/0/1/4/50148213/the_perks_of_being_a_wallflower_-stephen_chbosky.pdf')">
+            <img src="POB.png" alt="Book 3">
+            <div class="book-title">The Perks of Being a Wallflower <br> ~ Stephen Chbosky </div>
+        </div>
+    </div>
+
+    <div style="text-align: center;" class="viewer-container" id="viewerContainer">
+        <iframe id="bookViewer"></iframe>
+    </div>
+
+    <script src="MH.js"> </script>
+
+</body>
+</html>

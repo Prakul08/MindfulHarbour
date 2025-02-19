@@ -1,0 +1,118 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffd54c;
+    padding: 0px;  /* Reduce padding to make it shorter */
+    height: 75px;  /* Adjust height */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    margin: 0;
+    z-index: 1000;
+}
+
+.navbar img {
+    height: 75px;  /* Increase image size */
+    width: auto;
+    margin-left: 0;  /* Align to the left */
+    left: 0;
+}
+
+.nav-links {
+    display: flex; /* Default to flex for larger screens */
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: large;
+    color: black;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #555;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #000000;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: 15px;
+    left: -130px;
+    border-radius: 10px;
+}
+
+.dropdown-content a {
+    color: white; /* Keep text color white */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #777; /* Change to a lighter shade for better visibility */
+    color: white; /* Ensure text remains white on hover */
+    border-radius: 8px;
+}
+
+/* Show the dropdown when the menu icon is clicked */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown .bi-list {
+    font-size: 24px; /* Adjust icon size */
+    color: black;
+    cursor: pointer;
+    display: block; /* Ensure the icon is displayed */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically */
+        height: auto; /* Allow height to adjust */
+        padding: 10px; /* Add some padding */
+    }
+
+    .nav-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 10px; /* Reduce gap */
+        margin-left: 0; /* Reset margin */
+        width: 100%; /* Full width */
+        display: flex; /* Show links by default */
+    }
+
+    .navbar img {
+        margin-bottom: 10px; /* Add space below the image */
+    }
+
+    .dropdown-content {
+        left: 0; /* Align dropdown to the left */
+    }
+
+    .dropdown .bi-list {
+        font-size: 30px; /* Increase icon size for better touch targets */
+    }
+}
+
+/* Show the dropdown when the menu icon is clicked */
+.dropdown:hover .dropdown-content {
+	display: block;
+}

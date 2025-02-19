@@ -1,0 +1,360 @@
+﻿<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+  
+.auto-style2 {
+	text-align: center;
+	font-family: "Comic Sans MS";
+	font-size: large;
+	color: black;
+}
+
+.auto-style4 {
+	font-weight: normal;
+}
+.auto-style6 {
+	text-decoration: none;
+}
+.auto-style7 {
+	color: #000000;
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #FFFFCC;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+    }
+	
+    /* Left Half - Slideshow and Timer */
+    .left-column {
+      position: relative;
+      width: 100%; /* Left half of the screen */
+      height: 100%;
+    }
+
+    .slideshow-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Keeps slideshow behind content */
+    }
+
+    .slideshow-container img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .timer-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Center the timer */
+      background: rgba(255, 255, 204, 0.9); /* Slightly transparent background */
+      padding: 30px;
+      width: 400px;
+      height: 400px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Right Half - Information */
+    .right-column {
+      width: 50%; /* Right half of the screen */
+      padding: 70px;
+    }
+    
+    .content {
+      display: flex;
+      flex-direction: row; /* Keep left and right columns side-by-side */
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .time {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: black;
+    }
+
+    button.stop {
+      background-color: #f44336;
+    }
+
+    button.reset {
+      background-color: #FFFF00;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+ 
+#music-container {
+  position: fixed; /* Stays at the bottom */
+  bottom: 10px; /* Adjusts height from the bottom */
+  right:100px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adds spacing between button and player */
+}
+
+#play-music-button {
+  padding: 8px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+#audio-player {
+  width: 300px; /* Adjust width as needed */
+}
+   
+  .auto-style8 {
+	  font-family: "Times New Roman", Times, serif;
+  }
+  .auto-style9 {
+	  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
+  .auto-style10 {
+	  text-align: left;
+  }
+  .auto-style11 {
+	  font-weight: normal;
+	  font-size: medium;
+  }
+  .auto-style12 {
+	  font-size: medium;
+  }
+  .auto-style13 {
+	  font-size: large;
+	  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
+
+    .progress-container {
+      width: 100%;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      margin-top: 20px;
+      z-index: 1000;
+    }
+  
+    .progress-bar {
+      height: 100%;
+      width: 100%; /* Start full */
+      background-color: #4CAF50;
+      border-radius: 10px;
+      transition: width 1s linear; /* Smooth transition */
+      z-index: 1000;
+    }
+
+    /* Add styles for input fields */
+    .input-container {
+      margin-top: 20px; /* Add some space above the input fields */
+    }
+
+    input[type=number] {
+      width: 60px;
+      padding: 5px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    
+     .focus-left {
+      position: absolute;
+      left: 10px; /* Distance from the left edge */
+      top: 75px; /* Below the navbar */
+      font-size: 30px;
+      font-weight: bold;
+      color: #ffffff;
+      font-family: "Comic Sans MS";
+    }
+
+    .quote-right {
+      position: absolute;
+      right: 10px; /* Distance from the right edge */
+      top: 85px; /* Align it with the left 'FOCUS' */
+      font-size: 20px;
+      color: #000;
+      font-weight: bold;
+      font-family: "Times New Roman", Times, serif;
+      width: 250px; /* Make sure it doesn't overflow the screen */
+      text-align: right;
+    } 
+    
+.editable-text {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Comic Sans MS";
+  color: #8b00a7;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.editable-text:focus {
+  outline: none;
+  background-color: #e0f7fa;
+}
+    
+       
+  </style>
+</head>
+
+<body bgcolor= "#FFFFCC">
+
+<div class="navbar">
+    <img src="Logo.png" alt="Logo" height="119" width="217">
+
+    <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="Activities.html">ACTIVITIES</a>
+        <a href="About Us.html">ABOUT US</a>
+        <a href="Contact Us.html">CONTACT US</a>
+
+        <div class="dropdown">
+          <i class="bi bi-list menu-icon"></i>
+          <div class="dropdown-content">
+              <a href="Pomodoro.html">Pomodoro Timer</a>
+              <a href="Yoga.html">Surya Namskar</a>
+              <a href="https://www.youtube.com/watch?v=inpok4MKVLM" target="_blank" onclick="window.open(this.href, 'popup', 'width=800,height=450'); 
+              return false;">Medition Video</a>
+              <a href="book.html">Book Library</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+  <div class="focus-left">
+    focus
+  </div>
+
+  <div class="quote-right">
+    "Hard work beats talent when talent doesn't work hard"
+  </div>
+
+<div class="content">
+  <div class="left-column">
+    <div class="slideshow-container">
+      <img class="mySlides" src="1a.jpg" alt="Slide 1">
+      <img class="mySlides" src="2a.png" alt="Slide 2">
+      <img class="mySlides" src="3a.jpg" alt="Slide 3">
+      <img class="mySlides" src="4a.jpg" alt="Slide 4">
+      <img class="mySlides" src="5a.jpg" alt="Slide 5">
+      <img class="mySlides" src="6a.jpg" alt="Slide 6">
+      <img class="mySlides" src="7a.jpg" alt="Slide 7">
+      <img class="mySlides" src="8a.jpg" alt="Slide 8">
+      <img class="mySlides" src="9a.jpg" alt="Slide 9">
+      <img class="mySlides" src="10a.jpg" alt="Slide 10">
+      <img class="mySlides" src="11a.jpg" alt="Slide 11">
+    </div>
+
+<div class="timer-container">
+  <h1>Pomodoro Timer</h1>
+  <div class="editable-text" id="focus-text" contenteditable="true">
+    What do you want to focus on?
+  </div>
+  <div class="time" id="time">25:00</div>
+  <div class="controls">
+    <button id="start">Start</button>
+    <button id="stop" class="stop">Stop</button>
+    <button id="reset" class="reset">Reset</button>
+  </div>      
+  
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <!-- Input fields for focus and break time -->
+      <div class="input-container">
+        <label for="focus-time">Focus Time (minutes):</label>
+		<input style="background-color:#cfff70; border-radius: 10px;" type="number" id="focus-time" value="25" min="1" />        
+		<br> <br>
+        <label for="break-time">Break Time (minutes):</label>
+        <input style="background-color:#cfff70; border-radius: 10px;" type="number" id="break-time" value="5" min="1" />
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Right Column for Additional Information -->
+  <div class="right-column">
+    <h2 class="auto-style8">START YOUR POMODORO TIMER, RIGHT NOW!</h2> <br>
+   <h3><span class="auto-style9"><strong>What is the Pomodoro Technique?</strong></span></h3> <p style="margin-top: 30px"><span class="auto-style9">The Pomodoro Technique is a powerful time
+    management method that helps you stay focused and productive. By working in short bursts, you’ll accomplish more while avoiding burnout. </span> <p>
+    
+    <p style="text-align:left; margin-top:40px;"> 
+	  <p style="text-align:left"> <h4 class="auto-style13">How It Works<h4 class="auto-style10"> 
+	  <span class="auto-style8"><span class="auto-style12">1. Choose a Task 
+	  </span> <br class="auto-style12"> <span class="auto-style11">Select a task or project you want to work on. 
+	  </span> <br class="auto-style12"> <span class="auto-style12">2. Set a Timer for 25 Minutes 
+	  </span> <br class="auto-style12"> 
+      <span class="auto-style11">Start the timer and work on the task until the timer notifies. 
+	  </span> <br class="auto-style12"> <span class="auto-style12">3. Work for 25 Minutes (Pomodoro) 
+	  </span> <br class="auto-style12"> <span class="auto-style11">Focus solely on the task without distractions. 
+      </span> 
+    <br class="auto-style12">  <span class="auto-style12">4.  Take a 5-Minute Break 
+	  </span> <br class="auto-style12"> <span class="auto-style11">When the timer again notifies, take a short 5-minute break. Relax, stretch, or hydrate.</span></span></p>
+  </div>
+</div>
+
+<div id="music-container">
+  <button id="play-music-button">Play Music</button>
+  <audio id="audio-player" controls>
+    <source id="audio-source" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <input type="file" id="music-file" accept="audio/*" style="display: none;">
+</div>
+
+
+<script src="pomo.js"></script>
+<script src="MH.js"></script>
+
+</body>
+</html>
