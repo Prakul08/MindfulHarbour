@@ -158,10 +158,14 @@ document.getElementById('music-file').addEventListener('change', function (event
   var audioPlayer = document.getElementById('audio-player');
   var audioSource = document.getElementById('audio-source');
   var file = event.target.files[0];
-  var fileURL = URL.createObjectURL(file);
-  audioSource.src = fileURL;
-  audioPlayer.load();
-  audioPlayer.play();
+  if (file && file.type.startsWith('audio/')) {
+    var fileURL = URL.createObjectURL(file);
+    audioSource.src = fileURL;
+    audioPlayer.load();
+    audioPlayer.play();
+  } else {
+    alert('Please select a valid audio file.');
+  }
 });
 
 // Get the element for the editable sentence
